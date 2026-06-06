@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact | Ecom Heroes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter+Tight:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue:        #122B8F;
+    --blue-deep:   #0A1E6E;
+    --blue-darker: #060F3D;
+    --gold:        #F5C518;
+    --gold-bright: #FFD93D;
+    --ink:         #050817;
+    --paper:       #FFFFFF;
+    --off-white:   #F4F4F6;
+    --nav-h: 72px;
+    --ease: cubic-bezier(.2,.7,.2,1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { position: relative; }
+  html, body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter Tight', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+    letter-spacing: -0.01em;
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  ::selection { background: var(--gold); color: var(--ink); }
+  a, button { cursor: pointer; }
+
+
+  /* ===== NAV — Glassmorphic full-width strip → collapses to centered pill on scroll ===== */
+  .nav {
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    width: calc(100% - 40px);
+    max-width: 1480px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 0 22px;
+    border-radius: 999px;
+    background: #FFFFFF;
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+            backdrop-filter: blur(24px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.70);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.85) inset,
+      0 12px 40px rgba(6, 15, 61, 0.22),
+      0 4px 14px rgba(6, 15, 61, 0.14);
+    transition:
+      width 620ms cubic-bezier(.22,.61,.36,1),
+      max-width 620ms cubic-bezier(.22,.61,.36,1),
+      padding 620ms cubic-bezier(.22,.61,.36,1),
+      background 380ms var(--ease),
+      box-shadow 380ms var(--ease),
+      gap 480ms cubic-bezier(.22,.61,.36,1);
+  }
+  .nav.is-scrolled {
+    width: auto;
+    max-width: 980px;
+    padding: 0 14px 0 24px;
+    gap: 28px;
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.90) inset,
+      0 18px 48px rgba(6, 15, 61, 0.32),
+      0 4px 14px rgba(6, 15, 61, 0.16);
+  }
+
+  /* Logo */
+  .nav-logo {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: opacity 240ms var(--ease);
+  }
+  .nav-logo:hover { opacity: 0.85; }
+  .nav-logo-image {
+    height: 40px;
+    width: auto;
+    display: block;
+    flex-shrink: 0;
+    aspect-ratio: 1490 / 774;
+    object-fit: contain;
+    transition: height 480ms cubic-bezier(.22,.61,.36,1);
+  }
+  .nav.is-scrolled .nav-logo-image { height: 36px; }
+
+  /* Links */
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    transition: gap 480ms cubic-bezier(.22,.61,.36,1);
+  }
+  .nav.is-scrolled .nav-links { gap: 28px; }
+  .nav-links a {
+    position: relative;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 14.5px;
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    color: rgba(5, 8, 23, 0.78);
+    text-decoration: none;
+    padding: 4px 0;
+    transition: color 220ms var(--ease);
+    white-space: nowrap;
+  }
+  .nav-links a:hover,
+  .nav-links a.is-active { color: var(--ink); }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: -3px;
+    height: 1.5px;
+    background: var(--blue);
+    transition: right 360ms var(--ease);
+  }
+  .nav-links a:hover::after,
+  .nav-links a.is-active::after { right: 0; }
+
+  /* Actions: socials + CTA */
+  .nav-actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    flex-shrink: 0;
+  }
+  .nav-socials {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    overflow: hidden;
+    max-width: 100px;
+    opacity: 1;
+    transition: max-width 480ms cubic-bezier(.22,.61,.36,1), opacity 320ms var(--ease), margin 480ms var(--ease);
+  }
+  .nav.is-scrolled .nav-socials {
+    max-width: 0;
+    opacity: 0;
+    margin-left: -14px;
+  }
+  .nav-socials a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 999px;
+    color: rgba(5, 8, 23, 0.72);
+    text-decoration: none;
+    flex-shrink: 0;
+    transition: background 200ms var(--ease), color 200ms var(--ease), transform 200ms var(--ease);
+  }
+  .nav-socials a:hover {
+    background: rgba(5, 8, 23, 0.08);
+    color: var(--ink);
+    transform: translateY(-1px);
+  }
+  .nav-socials svg { width: 17px; height: 17px; display: block; }
+
+  /* CTA */
+  .nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 44px;
+    padding: 0 22px;
+    border-radius: 999px;
+    background: var(--gold);
+    color: var(--ink);
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    flex-shrink: 0;
+    box-shadow: 0 8px 24px rgba(245, 197, 24, 0.30);
+    transition:
+      padding 480ms cubic-bezier(.22,.61,.36,1),
+      gap 320ms var(--ease),
+      transform 220ms var(--ease),
+      box-shadow 220ms var(--ease),
+      filter 220ms var(--ease);
+  }
+  .nav-cta:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+    box-shadow: 0 12px 32px rgba(245, 197, 24, 0.42);
+  }
+  .nav-cta .cta-label {
+    max-width: 100px;
+    opacity: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: max-width 480ms cubic-bezier(.22,.61,.36,1), opacity 280ms var(--ease), margin 480ms var(--ease);
+  }
+  .nav.is-scrolled .nav-cta { padding: 0 12px; gap: 0; }
+  .nav.is-scrolled .nav-cta .cta-label {
+    max-width: 0;
+    opacity: 0;
+    margin-right: -4px;
+  }
+  .nav-cta .cta-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+  }
+  .nav-cta .cta-arrow svg { width: 16px; height: 16px; display: block; }
+
+  /* Mobile burger */
+  .nav-burger {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    background: rgba(5, 8, 23, 0.06);
+    border: 1px solid rgba(5, 8, 23, 0.10);
+    color: var(--ink);
+    cursor: pointer;
+    padding: 0;
+    flex-shrink: 0;
+  }
+  .nav-burger svg { width: 20px; height: 20px; display: block; }
+
+  .nav-mobile {
+    display: none;
+    position: fixed;
+    top: 92px;
+    left: 20px;
+    right: 20px;
+    z-index: 99;
+    flex-direction: column;
+    padding: 0 24px;
+    border-radius: 24px;
+    background: #FFFFFF;
+    -webkit-backdrop-filter: blur(22px) saturate(160%);
+            backdrop-filter: blur(22px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.60);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.85) inset,
+      0 18px 48px rgba(6, 15, 61, 0.32);
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    transition: max-height 360ms var(--ease), opacity 240ms var(--ease), padding 360ms var(--ease);
+  }
+  .nav.is-open .nav-mobile {
+    max-height: 520px;
+    opacity: 1;
+    pointer-events: auto;
+    padding: 20px 24px;
+  }
+  .nav-mobile a {
+    display: block;
+    padding: 12px 0;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(5, 8, 23, 0.10);
+  }
+  .nav-mobile a:last-child { border-bottom: none; }
+  .nav-mobile a:hover { color: var(--blue); }
+
+  @media (max-width: 900px) {
+    .nav { height: 60px; padding: 0 8px 0 18px; }
+    .nav-links, .nav-socials, .nav-cta { display: none; }
+    .nav-burger { display: inline-flex; }
+    .nav-mobile { display: flex; }
+    .nav.is-scrolled { max-width: none; width: calc(100% - 40px); }
+  }
+
+  /* ===== CONTACT SECTION ===== */
+  .contact-section {
+    position: relative;
+    min-height: 100vh;
+    padding: calc(var(--nav-h) + 80px) 6vw 100px;
+    background: #FFFFFF;
+    overflow: hidden;
+  }
+
+  /* Flowing background ribbon — subtle Bezier curves giving the airy feel of the reference */
+  .contact-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 92% 10%,  rgba(18, 43, 143, 0.040), transparent 70%),
+      radial-gradient(ellipse 50% 45% at 8% 95%,   rgba(18, 43, 143, 0.030), transparent 72%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .contact-flow-svg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.7;
+  }
+
+  .contact-grid {
+    position: relative;
+    z-index: 2;
+    max-width: 1340px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: clamp(48px, 6vw, 96px);
+    align-items: start;
+  }
+
+  /* Left column */
+  .contact-left {
+    padding-top: 12px;
+  }
+  .contact-kicker {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .contact-kicker::before {
+    content: '';
+    width: 32px;
+    height: 1.5px;
+    background: var(--gold);
+  }
+  .contact-headline {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 800;
+    font-size: clamp(40px, 5.4vw, 80px);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+    color: #0F172A;
+    margin-bottom: 32px;
+  }
+  .contact-headline .accent { color: var(--blue); }
+  .contact-desc {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: clamp(15px, 1.1vw, 18px);
+    line-height: 1.6;
+    color: #6B7280;
+    font-weight: 400;
+    max-width: 500px;
+    margin-bottom: 40px;
+  }
+
+  /* Stats / quick info row at bottom-left */
+  .contact-meta {
+    margin-top: 64px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(18, 43, 143, 0.10);
+    max-width: 540px;
+  }
+  .contact-meta-item h4 {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.20em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 12px;
+  }
+  .contact-meta-item p {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    color: #0F172A;
+    font-weight: 500;
+  }
+  .contact-meta-item a {
+    color: #0F172A;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(18, 43, 143, 0.25);
+    padding-bottom: 1px;
+    transition: color 200ms var(--ease), border-color 200ms var(--ease);
+  }
+  .contact-meta-item a:hover {
+    color: var(--blue);
+    border-color: var(--blue);
+  }
+
+  /* Right column — the form */
+  .contact-form-card {
+    position: relative;
+    background: #FFFFFF;
+    border-radius: 28px;
+    padding: 44px clamp(28px, 3.5vw, 48px);
+    box-shadow:
+      0 1px 2px rgba(18, 43, 143, 0.04),
+      0 4px 12px rgba(18, 43, 143, 0.06),
+      0 24px 48px rgba(18, 43, 143, 0.10),
+      0 60px 96px rgba(18, 43, 143, 0.06);
+    border: 1px solid rgba(18, 43, 143, 0.06);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 22px;
+  }
+  .form-row.full {
+    grid-template-columns: 1fr;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+  }
+  .form-field label {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    color: #0F172A;
+    margin-bottom: 8px;
+  }
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: -0.005em;
+    color: #0F172A;
+    background: #FFFFFF;
+    border: 1px solid rgba(18, 43, 143, 0.15);
+    border-radius: 14px;
+    padding: 14px 16px;
+    width: 100%;
+    transition: border-color 220ms var(--ease), box-shadow 220ms var(--ease), background 220ms var(--ease);
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  .form-field input::placeholder,
+  .form-field textarea::placeholder {
+    color: rgba(107, 114, 128, 0.7);
+    font-weight: 400;
+  }
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 4px rgba(18, 43, 143, 0.10);
+    background: #FFFFFF;
+  }
+  .form-field input:hover,
+  .form-field select:hover,
+  .form-field textarea:hover {
+    border-color: rgba(18, 43, 143, 0.28);
+  }
+  .form-field textarea {
+    min-height: 140px;
+    resize: vertical;
+    line-height: 1.5;
+  }
+
+  /* Custom select chevron */
+  .form-field.select-wrap {
+    position: relative;
+  }
+  .form-field.select-wrap::after {
+    content: '';
+    position: absolute;
+    right: 18px;
+    bottom: 22px;
+    width: 10px;
+    height: 10px;
+    border-right: 1.8px solid rgba(18, 43, 143, 0.6);
+    border-bottom: 1.8px solid rgba(18, 43, 143, 0.6);
+    transform: rotate(45deg);
+    pointer-events: none;
+    transition: border-color 220ms var(--ease);
+  }
+  .form-field.select-wrap:hover::after {
+    border-color: var(--blue);
+  }
+  .form-field select {
+    padding-right: 44px;
+    cursor: pointer;
+  }
+  .form-field select option {
+    background: #FFFFFF;
+    color: #0F172A;
+  }
+
+  /* Country select with flag prefix — uses a sibling positioned span */
+  .form-field.country-select {
+    position: relative;
+  }
+  .form-field.country-select .flag {
+    position: absolute;
+    left: 16px;
+    bottom: 18px;
+    pointer-events: none;
+    z-index: 1;
+    font-size: 18px;
+    line-height: 1;
+  }
+  .form-field.country-select select {
+    padding-left: 46px;
+  }
+
+  /* Submit row — right-aligned primary CTA */
+  .form-submit-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 32px;
+  }
+  .form-submit {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(180deg, #1E3FA8 0%, #122B8F 60%, #0A1E6E 100%);
+    color: #FFFFFF;
+    border: none;
+    padding: 18px 36px;
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    cursor: pointer;
+    overflow: hidden;
+    transition:
+      transform 280ms cubic-bezier(.22,.61,.36,1),
+      box-shadow 280ms cubic-bezier(.22,.61,.36,1),
+      color 280ms cubic-bezier(.22,.61,.36,1);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.12) inset,
+      0 12px 32px rgba(18, 43, 143, 0.30),
+      0 4px 12px rgba(18, 43, 143, 0.18);
+  }
+  .form-submit::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #FFE066 0%, #F5C518 50%, #E1B015 100%);
+    transform: translateY(101%);
+    transition: transform 480ms cubic-bezier(.22,.61,.36,1);
+    z-index: 0;
+  }
+  .form-submit > * { position: relative; z-index: 1; }
+  .form-submit .cta-arrow {
+    display: inline-flex;
+    align-items: center;
+    transition: transform 280ms cubic-bezier(.22,.61,.36,1);
+    font-size: 17px;
+    line-height: 1;
+  }
+  .form-submit:hover {
+    transform: translateY(-3px);
+    color: var(--ink);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.30) inset,
+      0 18px 44px rgba(245, 197, 24, 0.42),
+      0 4px 12px rgba(245, 197, 24, 0.22);
+  }
+  .form-submit:hover::before { transform: translateY(0); }
+  .form-submit:hover .cta-arrow { transform: translateX(6px); }
+
+  /* Success message after submit */
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 40px 20px;
+  }
+  .form-success.is-shown { display: block; }
+  .form-success .checkmark {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    color: var(--ink);
+  }
+  .form-success h3 {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: clamp(22px, 2vw, 28px);
+    font-weight: 800;
+    color: #0F172A;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+  .form-success p {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 15px;
+    color: #6B7280;
+    line-height: 1.55;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .contact-section { padding: calc(var(--nav-h) + 48px) 5vw 64px; }
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .contact-meta { max-width: none; }
+    .contact-flow-svg { display: none; }
+    .contact-headline { font-size: clamp(36px, 8vw, 56px); }
+  }
+  @media (max-width: 640px) {
+    .contact-section { padding: calc(var(--nav-h) + 32px) 22px 56px; }
+    .contact-form-card { padding: 32px 22px; border-radius: 22px; }
+    .form-row {
+      grid-template-columns: 1fr;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+    .form-submit-row { justify-content: stretch; }
+    .form-submit { width: 100%; justify-content: center; }
+    .contact-meta { grid-template-columns: 1fr; gap: 24px; }
+  }
+
+  /* ===== FOOTER (copied from main site) ===== */
+  .footer {
+    position: relative;
+    background: #FFFFFF;
+    color: var(--blue);
+    padding: 80px 5vw 0;
+    overflow: hidden;
+  }
+  .footer > * { max-width: 1320px; margin-left: auto; margin-right: auto; }
+
+  .footer-top-band {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 56px;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 13px;
+    color: var(--blue);
+  }
+  .footer-top-band .left {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: 0.02em;
+  }
+  .footer-top-band .left .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18);
+    animation: pulseGreen 2.4s ease-in-out infinite;
+  }
+  @keyframes pulseGreen {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.18); }
+    50%      { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0.06); }
+  }
+  .footer-top-band .right a {
+    color: var(--blue);
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(18, 43, 143, 0.30);
+    padding-bottom: 2px;
+    transition: border-color 220ms var(--ease), color 220ms var(--ease);
+  }
+  .footer-top-band .right a:hover {
+    color: var(--ink);
+    border-color: var(--ink);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1.4fr;
+    gap: 56px;
+    padding: 64px 0 72px;
+    align-items: start;
+  }
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  .footer-col h4 {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin: 0 0 24px 0;
+  }
+  .footer-col.brand p {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #0F172A;
+    font-weight: 400;
+    margin-bottom: 24px;
+    max-width: 420px;
+  }
+  .footer-col.brand .social {
+    display: flex;
+    gap: 8px;
+  }
+  .footer-col.brand .social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    color: var(--blue);
+    border: 1px solid rgba(18, 43, 143, 0.18);
+    text-decoration: none;
+    transition: background 220ms var(--ease), color 220ms var(--ease), transform 220ms var(--ease);
+  }
+  .footer-col.brand .social a:hover {
+    background: var(--blue);
+    color: #FFFFFF;
+    transform: translateY(-2px);
+  }
+  .footer-col.brand .social svg { width: 16px; height: 16px; }
+  .footer-col.services ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .footer-col.services a {
+    color: #0F172A;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 400;
+    transition: color 220ms var(--ease);
+  }
+  .footer-col.services a:hover { color: var(--blue); }
+  .footer-col.join .lede {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #0F172A;
+    margin-bottom: 18px;
+    max-width: 420px;
+  }
+  .footer-col.join .input-row {
+    display: flex;
+    background: #F4F4F6;
+    border-radius: 999px;
+    padding: 6px;
+    max-width: 420px;
+  }
+  .footer-col.join .input-row input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0 16px;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 14px;
+    color: #0F172A;
+  }
+  .footer-col.join .input-row input::placeholder { color: #9CA3AF; }
+  .footer-col.join .input-row button {
+    background: var(--blue);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 999px;
+    padding: 12px 22px;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 220ms var(--ease);
+  }
+  .footer-col.join .input-row button:hover { background: var(--ink); }
+  .footer-col.join .small {
+    margin-top: 12px;
+    font-size: 12px;
+    color: #9CA3AF;
+    font-family: 'Inter Tight', sans-serif;
+  }
+
+  .footer-wordmark {
+    width: 100%;
+    padding: 32px 4vw 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(16px, 2.4vw, 36px);
+    overflow: hidden;
+  }
+  .footer-wordmark .bolt {
+    flex-shrink: 0;
+    width: clamp(52px, 8vw, 110px);
+    height: auto;
+    color: var(--gold);
+    filter: drop-shadow(0 10px 24px rgba(245, 197, 24, 0.28));
+  }
+  .footer-wordmark .bolt svg { width: 100%; height: auto; display: block; }
+  .footer-wordmark .wordmark-text {
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 500;
+    font-size: clamp(44px, 11vw, 180px);
+    line-height: 0.9;
+    letter-spacing: -0.045em;
+    color: var(--blue);
+    white-space: nowrap;
+    padding-right: 0.08em;
+    background: linear-gradient(180deg, #2B49B0 0%, #122B8F 55%, #0A1E6E 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .footer-legal {
+    border-top: 1px solid rgba(18, 43, 143, 0.10);
+    padding: 24px 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 13px;
+    color: #6B7280;
+  }
+  .footer-legal .legal-right { display: inline-flex; gap: 28px; }
+  .footer-legal .legal-right a {
+    color: #6B7280;
+    text-decoration: none;
+    transition: color 200ms var(--ease);
+  }
+  .footer-legal .legal-right a:hover { color: var(--blue); }
+  .footer-legal .legal-right span { color: #9CA3AF; }
+
+  @media (max-width: 900px) {
+    .footer { padding: 60px 5vw 0; }
+    .footer-top-band { padding-bottom: 44px; }
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 48px 36px;
+      padding: 48px 0 56px;
+    }
+    .footer-col.brand { grid-column: 1 / -1; }
+    .footer-col.join { grid-column: 1 / -1; }
+    .footer-wordmark { padding: 16px 0 40px; gap: 24px; }
+    .footer-legal {
+      flex-direction: column;
+      gap: 18px;
+      align-items: flex-start;
+      padding-top: 20px;
+    }
+    .footer-legal .legal-right { flex-wrap: wrap; gap: 18px; }
+  }
+  @media (max-width: 640px) {
+    .footer-wordmark { padding: 8px 0 32px; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV (identical to main site) ===== -->
+<nav class="nav" id="site-nav">
+
+  <a class="nav-logo" href="ecom_heroes_hero.html" aria-label="Ecom Heroes">
+    <img class="nav-logo-image" src="ecom_heroes_logo.png" alt="Ecom Heroes" />
+  </a>
+
+  <div class="nav-links">
+    <a href="ecom_heroes_hero.html#">Services</a>
+    <a href="ecom_heroes_hero.html#how-it-works-steps">How It Works</a>
+    <a href="ecom_heroes_hero.html#our-process">Roles</a>
+    <a href="contact.html" class="is-active">Contact</a>
+  </div>
+
+  <div class="nav-actions">
+    <div class="nav-socials">
+      <a href="#" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="3" width="18" height="18" rx="5"/>
+          <circle cx="12" cy="12" r="4"/>
+          <circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" stroke="none"/>
+        </svg>
+      </a>
+      <a href="#" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+          <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4v11H3v-11zm6.5 0h3.8v1.55h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.77 2.5 4.77 5.75v5.65h-4v-5c0-1.2-.02-2.75-1.7-2.75-1.7 0-1.97 1.3-1.97 2.65v5.1h-4v-11z"/>
+        </svg>
+      </a>
+    </div>
+
+    <a class="nav-cta" href="#contact-form">
+      <span class="cta-label">Get in touch</span>
+      <span class="cta-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="7" y1="17" x2="17" y2="7"/>
+          <polyline points="9 7 17 7 17 15"/>
+        </svg>
+      </span>
+    </a>
+  </div>
+
+  <button class="nav-burger" type="button" aria-label="Menu" aria-controls="nav-mobile-panel" aria-expanded="false"
+          onclick="(function(b){var n=document.getElementById('site-nav');var open=n.classList.toggle('is-open');b.setAttribute('aria-expanded',open);})(this)">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+      <line x1="4" y1="8"  x2="20" y2="8"/>
+      <line x1="4" y1="16" x2="20" y2="16"/>
+    </svg>
+  </button>
+
+  <div class="nav-mobile" id="nav-mobile-panel">
+    <a href="ecom_heroes_hero.html#">Services</a>
+    <a href="ecom_heroes_hero.html#how-it-works-steps">How It Works</a>
+    <a href="ecom_heroes_hero.html#our-process">Roles</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+</nav>
+
+<!-- ===== CONTACT SECTION ===== -->
+<section class="contact-section" id="contact-form">
+
+  <div class="contact-grid">
+
+    <!-- LEFT — copy + meta -->
+    <div class="contact-left">
+      <div class="contact-kicker">Let's talk</div>
+      <h1 class="contact-headline">
+        Hire your next <span class="accent">remote operator</span> in days, not months.
+      </h1>
+      <p class="contact-desc">
+        Tell us about your e-commerce brand or agency and the role you need to fill. We'll match you with vetted, pre-trained talent and have your custom hiring plan in your inbox within 24 hours.
+      </p>
+
+      <div class="contact-meta">
+        <div class="contact-meta-item">
+          <h4>Email</h4>
+          <p><a href="mailto:contact@ecomheroes.co">contact@ecomheroes.co</a></p>
+        </div>
+        <div class="contact-meta-item">
+          <h4>Response time</h4>
+          <p>Within 24 hours, weekdays.</p>
+        </div>
+        <div class="contact-meta-item">
+          <h4>Headquarters</h4>
+          <p>Remote-first · Worldwide</p>
+        </div>
+        <div class="contact-meta-item">
+          <h4>For talent</h4>
+          <p><a href="#">Apply to join the network</a></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT — form card -->
+    <div class="contact-form-card">
+      <form id="contact-form-el" onsubmit="event.preventDefault(); document.getElementById('contact-form-fields').style.display='none'; document.getElementById('contact-form-success').classList.add('is-shown');">
+
+        <div id="contact-form-fields">
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="firstName">First Name</label>
+              <input id="firstName" name="firstName" type="text" placeholder="James" required />
+            </div>
+            <div class="form-field">
+              <label for="lastName">Last Name</label>
+              <input id="lastName" name="lastName" type="text" placeholder="Smith" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@yourbrand.com" required />
+            </div>
+            <div class="form-field country-select select-wrap">
+              <label for="country">Country</label>
+              <span class="flag" aria-hidden="true">🌎</span>
+              <select id="country" name="country" required>
+                <option value="">Select your country</option>
+                <option value="US">United States</option>
+                <option value="CA">Canada</option>
+                <option value="GB">United Kingdom</option>
+                <option value="AU">Australia</option>
+                <option value="DE">Germany</option>
+                <option value="FR">France</option>
+                <option value="NL">Netherlands</option>
+                <option value="OTHER">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row full">
+            <div class="form-field select-wrap">
+              <label for="role">What role do you need to fill?</label>
+              <select id="role" name="role" required>
+                <option value="">Select a role</option>
+                <option>Customer Support</option>
+                <option>Paid Media Buying</option>
+                <option>Shopify Development</option>
+                <option>SEO Strategy</option>
+                <option>Graphic Design</option>
+                <option>Amazon Operations</option>
+                <option>Multiple / Not sure yet</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row full">
+            <div class="form-field">
+              <label for="company">Company / Brand</label>
+              <input id="company" name="company" type="text" placeholder="Your brand or agency" />
+            </div>
+          </div>
+
+          <div class="form-row full">
+            <div class="form-field">
+              <label for="message">Tell us about your needs</label>
+              <textarea id="message" name="message" placeholder="What does success look like? Team size, budget range, timeline..."></textarea>
+            </div>
+          </div>
+
+          <div class="form-submit-row">
+            <button class="form-submit" type="submit">
+              <span>Send my request</span>
+              <span class="cta-arrow" aria-hidden="true">→</span>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Success state shown after submit -->
+        <div class="form-success" id="contact-form-success" role="status" aria-live="polite">
+          <div class="checkmark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="28" height="28">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <h3>Request received.</h3>
+          <p>Thanks — we'll be back to you with a custom hiring plan within 24 hours.</p>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== FOOTER (identical to main site) ===== -->
+<footer class="footer">
+  <div class="footer-top-band">
+    <div class="left">
+      Currently placing heroes worldwide
+    </div>
+    <div class="right">
+      <a href="mailto:contact@ecomheroes.co">contact@ecomheroes.co</a>
+    </div>
+  </div>
+
+  <div class="footer-grid">
+
+    <div class="footer-col brand">
+      <h4>Brand Statement</h4>
+      <p>A talent system for ecommerce: sourcing, training, and managing the top 1% of remote operators so brands and agencies can scale without the overhead.</p>
+      <div class="social" aria-label="Social links">
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="5"/>
+            <circle cx="12" cy="12" r="4"/>
+            <circle cx="17.5" cy="6.5" r="0.6" fill="currentColor"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+            <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4v11H3v-11zm6.5 0h3.8v1.55h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.77 2.5 4.77 5.75v5.65h-4v-5c0-1.2-.02-2.75-1.7-2.75-1.7 0-1.97 1.3-1.97 2.65v5.1h-4v-11z"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="X / Twitter">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/>
+          </svg>
+        </a>
+        <a href="#" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+            <path d="M23.5 6.2c-.3-1.1-1.1-2-2.2-2.3C19.3 3.5 12 3.5 12 3.5s-7.3 0-9.3.4C1.6 4.2.8 5.1.5 6.2 0 8.2 0 12 0 12s0 3.8.5 5.8c.3 1.1 1.1 2 2.2 2.3 2 .4 9.3.4 9.3.4s7.3 0 9.3-.4c1.1-.3 2-1.1 2.2-2.3.5-2 .5-5.8.5-5.8s0-3.8-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-col services">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#">Customer Support</a></li>
+        <li><a href="#">Paid Media Buying</a></li>
+        <li><a href="#">Shopify Development</a></li>
+        <li><a href="#">SEO Strategy</a></li>
+        <li><a href="#">Graphic Design</a></li>
+        <li><a href="#">Amazon Operations</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col join">
+      <h4>Join Ecom Heroes</h4>
+      <p class="lede">Get the playbook: hiring guides, talent benchmarks, and ops case studies from real e-commerce teams.</p>
+      <div class="input-row">
+        <input type="email" placeholder="Type your email" aria-label="Email address" />
+        <button type="button">Subscribe</button>
+      </div>
+      <p class="small">One email a month. No spam. Unsubscribe anytime.</p>
+    </div>
+
+  </div>
+
+  <div class="footer-wordmark">
+    <div class="bolt">
+      <svg viewBox="0 0 100 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M 58 4 L 12 78 L 42 78 L 30 136 L 88 56 L 56 56 L 72 4 Z"
+              fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="wordmark-text">Ecom Heroes</div>
+  </div>
+
+  <div class="footer-legal">
+    <div>© 2026 Ecom Heroes. All rights reserved.</div>
+    <div class="legal-right">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Imprint</a>
+      <span>Designed for talent at scale</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* Nav scroll-collapse — identical to main page */
+  (function() {
+    var nav = document.getElementById('site-nav');
+    if (!nav) return;
+    var threshold = 8;
+    var ticking = false;
+    function update() {
+      if (window.scrollY > threshold) nav.classList.add('is-scrolled');
+      else nav.classList.remove('is-scrolled');
+      ticking = false;
+    }
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
+      }
+    }, { passive: true });
+    update();
+  })();
+</script>
+
+</body>
+</html>
