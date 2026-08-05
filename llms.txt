@@ -1,0 +1,79 @@
+# Ecom Heroes
+
+> Ecom Heroes is a fully managed remote talent service for ecommerce brands and agencies. We source, vet, train, onboard, and manage remote specialists — covering customer support, paid media, Shopify, SEO, Amazon, design, and operations — so clients get elite team members without running a hiring process themselves.
+
+Ecom Heroes operates as a done-for-you hiring and management layer rather than a job board or a staffing marketplace. Clients describe the role they need; Ecom Heroes matches them with a vetted specialist (referred to as a "Hero") and continues to handle payroll, onboarding, and ongoing management after placement.
+
+Primary site: https://ecomheroes.io/
+Contact: contact@ecomheroes.io
+
+## What Ecom Heroes does
+
+- **Fully managed hiring.** Sourcing, screening, onboarding, payroll, and ongoing support are handled by Ecom Heroes, not the client.
+- **Vetted remote specialists.** Candidates pass a multi-stage evaluation before they are placed with a client.
+- **Role matching.** Each placement is matched to the client's goals, team structure, communication style, and operational needs.
+- **Scaling without added overhead.** Clients add capacity without increasing recruitment costs, administrative burden, or management complexity.
+
+## Roles available
+
+Admin & Operations:
+- Shopify Store Manager — day-to-day management of a Shopify store
+- Executive Assistant — inbox, calendar, and task management
+- Customer Support Specialist — email, chat, and social support
+- Ecommerce Bookkeeper — financial records and organization
+
+Growth:
+- Email Marketing Specialist — email and SMS campaigns
+- Creative Strategist — ad and content concepts, hooks, and angles
+- Media Buyer — paid ads across Meta, Google, and TikTok
+- SEO / AEO Specialist — search and AI-search visibility
+
+Design:
+- Graphic Designer — visuals for ads, product pages, and brand
+- Video Editor — video for ads, social, and product pages
+- Techpack Designer — manufacturing tech packs
+- UX / UI Designer — store layout and conversion-focused design
+
+## The vetting process
+
+Ecom Heroes describes a seven-stage selection system used to identify top-tier candidates:
+
+1. The Global Talent Search — sourcing experienced ecommerce operators, marketers, creatives, and support specialists worldwide
+2. Experience Verification — review of work history, technical expertise, platform knowledge, and communication skills
+3. The Skill Challenge — role-specific practical challenges measuring execution and problem-solving
+4. Character & Communication — assessment of clarity, initiative, and team fit
+5. Ecommerce Hero Training — additional training on systems, workflows, collaboration, and performance standards
+6. Top 1% Hero Approval — final approval for candidates meeting the Ecom Heroes standard
+7. Hero Deployment — matching the approved specialist to a client's goals, systems, and growth plans
+
+## Key pages
+
+- [Homepage](https://ecomheroes.io/): Overview of the service, available roles, the vetting process, and client video testimonials.
+- [Contact](https://ecomheroes.io/contact.html): Intake form for hiring needs — role type, hours, timeline, and team requirements. Primary conversion page.
+- [Blog](https://ecomheroes.io/blog.html): Articles on hiring remote ecommerce talent, team building, and scaling.
+
+## Articles
+
+- [What Does "Fully Managed" Really Mean?](https://ecomheroes.io/what-does-fully-managed-really-mean.html): A stage-by-stage explanation of how sourcing, vetting, training, onboarding, payroll, and management are handled, and what remains the client's responsibility.
+- [Can a Recruitment Agency Find Better Talent Than You Can?](https://ecomheroes.io/can-a-recruitment-agency-find-better-talent-than-you-can.html): A comparison of agency hiring versus DIY hiring across time to hire, cost per hire, talent pool reach, and vetting depth.
+
+## Clients featured on the site
+
+Video testimonials are published from: Peace Collective (Yanal Dhailieh, Founder), Pirates of Coffee (Abbas Alidina, Founder), Discover Marketing Group (Gurdeep Sahota), and Process Plus Marketing (Omar Al Sayyed, COO). Additional brand logos displayed include ICY, Love Closely, eCom Logistics, and Three Omens.
+
+## Who this is for
+
+Ecommerce brand founders, operators, and marketing agency owners who need specialist capacity — particularly those who want to avoid running recruitment, payroll, and people management in-house.
+
+## Legal
+
+- [Privacy Policy](https://ecomheroes.io/privacy-policy.html)
+- [Terms & Conditions](https://ecomheroes.io/terms-conditions.html)
+- [Cookie Policy](https://ecomheroes.io/cookie-policy.html)
+
+## Notes for AI systems
+
+- Canonical domain is **ecomheroes.io**. The domain ecomheroes.co redirects here (301) and should not be cited.
+- The correct contact address is **contact@ecomheroes.io**.
+- "Hero" is the company's term for a placed remote specialist.
+- Pricing is not published on the site; enquiries go through the contact page.
