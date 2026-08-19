@@ -690,12 +690,11 @@ text-shadow:0 1px 4px rgba(0,0,0,0.45);
 position:relative;
 display:inline-block;
 white-space:nowrap;
-color:rgba(255,255,255,0.90);
+/* matches the surrounding "Powered by" text exactly — no underline */
+color:inherit;
 font-weight:700;
 text-decoration:none;
-border-bottom:1px solid rgba(245,197,24,0.50);
-padding-bottom:1px;
-transition:color 200ms var(--ease),border-color 200ms var(--ease);
+transition:color 200ms var(--ease);
 }
 /* invisible hit area — a comfortable touch target without pushing
    the gold underline away from the wordmark */
@@ -704,11 +703,9 @@ content:'';
 position:absolute;
 left:-10px;right:-10px;top:-12px;bottom:-12px;
 }
-.footer-credit a:hover,.footer-credit a:focus-visible{
-color:var(--gold-bright);
-border-bottom-color:var(--gold-bright);
-outline:none;
-}
+/* subtle brighten on hover; keyboard focus keeps the browser's own
+   ring, which is the only visible affordance now the underline is gone */
+.footer-credit a:hover{color:#FFFFFF}
 @media (max-width:640px){
 .footer-credit{padding-top:16px;font-size:10px;letter-spacing:0.16em}
 }
