@@ -15,11 +15,12 @@
   :root{--blue:#122B8F;--blue-deep:#0A1E6E;--gold:#F5C518;--ink:#050817}
   *{box-sizing:border-box;margin:0;padding:0}
   html,body{height:100%}
-  body{display:flex;align-items:center;justify-content:center;min-height:100vh;
+  body{display:flex;flex-direction:column;align-items:center;min-height:100vh;
     background:linear-gradient(160deg,var(--blue) 0%,var(--blue-deep) 100%);
     color:#fff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
     text-align:center;padding:24px;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:520px}
+  /* auto margins centre the panel and leave the credit at the very bottom */
+  .wrap{max-width:520px;margin:auto 0}
   .code{font-size:clamp(72px,18vw,140px);font-weight:900;line-height:1;
     color:var(--gold);letter-spacing:-0.03em}
   h1{font-size:clamp(22px,5vw,32px);font-weight:800;margin:8px 0 12px}
@@ -28,6 +29,15 @@
     text-decoration:none;font-weight:700;padding:14px 28px;border-radius:999px;
     transition:transform .2s ease,opacity .2s ease}
   a:hover{transform:translateY(-2px);opacity:.92}
+  .footer-credit{padding-top:24px;font-size:10.5px;font-weight:600;
+    letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+  .footer-credit span{white-space:nowrap}
+  .footer-credit a{position:relative;display:inline-block;white-space:nowrap;
+    background:none;color:rgba(255,255,255,.9);font-weight:700;padding:0 0 1px;
+    border-radius:0;border-bottom:1px solid rgba(245,197,24,.5)}
+  .footer-credit a:hover{transform:none;opacity:1;color:#FFD93D;border-bottom-color:#FFD93D}
+  .footer-credit a::after{content:'';position:absolute;left:-10px;right:-10px;top:-12px;bottom:-12px}
+  @media (max-width:400px){.footer-credit{letter-spacing:.08em;font-size:9.5px}}
 </style>
 </head>
 <body>
@@ -37,5 +47,8 @@
     <p>The page you’re looking for doesn’t exist or has moved.</p>
     <a href="/index.html">Back to homepage</a>
   </main>
+  <div class="footer-credit">
+    <span>Powered by</span> <a href="https://www.skyboundscaling.com" target="_blank" rel="noopener noreferrer">Skybound Scaling</a>
+  </div>
 </body>
 </html>
