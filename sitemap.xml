@@ -2,46 +2,46 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ecomheroes.io/</loc>
-    <lastmod>2026-07-29</lastmod>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://ecomheroes.io/contact.html</loc>
-    <lastmod>2026-07-29</lastmod>
+    <loc>https://ecomheroes.io/contact</loc>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://ecomheroes.io/blog.html</loc>
-    <lastmod>2026-07-29</lastmod>
+    <loc>https://ecomheroes.io/blog</loc>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ecomheroes.io/what-does-fully-managed-really-mean.html</loc>
-    <lastmod>2026-07-14</lastmod>
+    <loc>https://ecomheroes.io/what-does-fully-managed-really-mean</loc>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://ecomheroes.io/can-a-recruitment-agency-find-better-talent-than-you-can.html</loc>
-    <lastmod>2026-07-14</lastmod>
+    <loc>https://ecomheroes.io/can-a-recruitment-agency-find-better-talent-than-you-can</loc>
+    <lastmod>2026-08-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://ecomheroes.io/privacy-policy.html</loc>
+    <loc>https://ecomheroes.io/privacy-policy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://ecomheroes.io/terms-conditions.html</loc>
+    <loc>https://ecomheroes.io/terms-conditions</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://ecomheroes.io/cookie-policy.html</loc>
+    <loc>https://ecomheroes.io/cookie-policy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

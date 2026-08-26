@@ -1,4 +1,4 @@
-# Ecom Heroes — https://ecomheroes.io/
+# Ecom Heroes (https://ecomheroes.io/)
 # Structured summary for AI systems: https://ecomheroes.io/llms.txt
 
 User-agent: *
@@ -6,7 +6,7 @@ Allow: /
 
 # --- AI search & answer engines (explicitly allowed) ---
 
-# OpenAI — ChatGPT Search, browsing, training
+# OpenAI (ChatGPT Search, browsing, training)
 User-agent: OAI-SearchBot
 Allow: /
 
@@ -16,7 +16,7 @@ Allow: /
 User-agent: GPTBot
 Allow: /
 
-# Anthropic — Claude
+# Anthropic (Claude)
 User-agent: ClaudeBot
 Allow: /
 
@@ -33,11 +33,11 @@ Allow: /
 User-agent: Perplexity-User
 Allow: /
 
-# Google — AI Overviews / Gemini grounding
+# Google (AI Overviews / Gemini grounding)
 User-agent: Google-Extended
 Allow: /
 
-# Microsoft — Bing / Copilot
+# Microsoft (Bing / Copilot)
 User-agent: Bingbot
 Allow: /
 
