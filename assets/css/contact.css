@@ -14,28 +14,12 @@ html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto 
 .contact-orb{display:none}
 @keyframes scrollUp{from{transform:translateY(0)}to{transform:translateY(-50%)}}
 @keyframes scrollDown{from{transform:translateY(-50%)}to{transform:translateY(0)}}
-.hero-logos{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,1.4vw,20px);height:clamp(520px,74vh,720px);overflow:hidden;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 11%,#000 89%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 11%,#000 89%,transparent 100%)}
-.hlogo-col{position:relative;overflow:hidden}
-.hlogo-track{display:flex;flex-direction:column;gap:clamp(14px,1.4vw,20px);will-change:transform}
-.hlogo-col.up .hlogo-track{animation:scrollUp 30s linear infinite}
-.hlogo-col.down .hlogo-track{animation:scrollDown 34s linear infinite;padding-top:clamp(30px,4vw,60px)}
-.hero-logos:hover .hlogo-track{animation-play-state:paused}
-.hlogo-tile{flex:0 0 auto;display:flex;align-items:center;justify-content:center;aspect-ratio:1/0.66;border-radius:20px;padding:clamp(18px,1.8vw,28px);background:linear-gradient(158deg,rgba(30,58,130,0.55) 0%,rgba(10,22,66,0.62) 100%);border:1px solid rgba(255,255,255,0.14);box-shadow:inset 0 1.5px 0 rgba(255,255,255,0.20),inset 0 -30px 50px -30px rgba(0,0,0,0.5),0 24px 46px -26px rgba(0,0,0,0.6);-webkit-backdrop-filter:blur(10px) saturate(1.3);backdrop-filter:blur(10px) saturate(1.3);transition:transform 420ms cubic-bezier(.2,.7,.2,1),box-shadow 420ms cubic-bezier(.2,.7,.2,1),border-color 420ms}
-.hlogo-tile::before{content:'';position:absolute;inset:0;border-radius:20px;background:radial-gradient(120% 90% at 50% 0%,rgba(170,198,255,0.16),transparent 70%);pointer-events:none}
-.hlogo-tile img{position:relative;max-width:78%;max-height:44px;width:auto;height:auto;object-fit:contain;opacity:0.92;filter:drop-shadow(0 3px 8px rgba(0,0,0,0.35))}
-.hlogo-tile img[alt="Pirates of Coffee"]{max-height:100px;max-width:94%}
-.hlogo-tile img[alt="Peace Collective"]{max-height:60px;max-width:97%}
-.hlogo-tile:hover{transform:translateY(-4px) scale(1.02);border-color:rgba(245,197,24,0.4);box-shadow:inset 0 1.5px 0 rgba(255,255,255,0.28),0 30px 56px -24px rgba(0,0,0,0.65)}
-@media (max-width:1024px){.hero-logos{height:clamp(360px,52vh,440px);max-width:520px;margin:0 auto}}
-@media (prefers-reduced-motion:reduce){.hlogo-track{animation:none}}
 /* FAILSAFE-REVEAL: if GSAP fails to load, force scroll/intro-reveal content visible so nothing is ever stuck hidden */
 html.no-gsap .contact-meta,html.no-gsap .contact-trust,html.no-gsap .contact-form-card,html.no-gsap .contact-form-stage::before{opacity:1 !important;visibility:visible !important}
 html.no-gsap .eyebrow,html.no-gsap .headline .line-1,html.no-gsap .headline .line-2,html.no-gsap .subhead,html.no-gsap .cta-row,html.no-gsap .hero-right .col,html.no-gsap .about-reveal,html.no-gsap #site-nav{opacity:1 !important;visibility:visible !important}
 html.no-gsap .footer-cta-card,html.no-gsap .footer-wordmark .wordmark-text,html.no-gsap .footer-col{opacity:1 !important;visibility:visible !important}
 
 /* Clickable partner logos (hero marquee) */
-.hlogo-tile a.logo-link{display:flex;align-items:center;justify-content:center;width:100%;height:100%;text-decoration:none;cursor:pointer}
-.hero-logos:hover .hlogo-track{animation-play-state:paused}
 
 /* Hero logos section label — fits on one line across all devices */
 .logos-eyebrow{display:block;text-align:center;margin:0 0 clamp(14px,2vw,22px);font-family:'Inter Tight',sans-serif;font-weight:700;font-size:clamp(10px,2.4vw,12.5px);letter-spacing:clamp(0.08em,0.5vw,0.26em);text-transform:uppercase;color:rgba(255,255,255,0.66);white-space:nowrap;max-width:100%}
@@ -59,7 +43,6 @@ html.low-power .footer-cta-card,html.low-power .footer-wordmark .wordmark-text,h
 .wsplit.is-revealed .wi{will-change:auto}
 
 /* brand grid must never exceed the viewport on phones (was pinned at 520px) */
-@media (max-width:600px){.hero-logos{max-width:100%}}
 
 /* mobile form ergonomics: 16px kills the iOS focus-zoom, taller controls
    are easier to hit, and the submit button gets a full-width thumb target */
@@ -71,101 +54,6 @@ textarea.control{min-height:132px}
 .form-label{font-size:12px}
 }
 
-/* ============================================================
-   BRAND LOGOS — the tile hugs its logo at every breakpoint.
-   The box is exactly as big as the logo inside it: the tile
-   shrink-wraps the image, and the image can never overflow the
-   tile (max-width:100% wins over any fixed pixel cap).
-   ============================================================ */
-.hlogo-tile{
-aspect-ratio:auto !important;
-width:fit-content !important;
-max-width:100% !important;
-padding:15px 22px !important;
-margin:0 auto !important;
-}
-.hlogo-tile a.logo-link{width:auto;height:auto;max-width:100%}
-.hlogo-tile img{
-max-width:100% !important;
-max-height:54px !important;
-width:auto;height:auto;
-opacity:0.95;
-}
-/* square badge logos read too small at the wide-logo cap */
-.hlogo-tile img[alt="Pirates of Coffee"]{max-height:92px !important}
-.hlogo-tile img[alt="Peace Collective"]{max-height:58px !important}
-
-/* ---- mobile & tablet fallback: a calm static column (no JS,
-        reduced motion, low power). The clones the marquee loop
-        uses stay hidden so each brand appears exactly once. ---- */
-@media (max-width:900px){
-.hero-logos{
-display:flex !important;
-flex-direction:column !important;
-height:auto !important;
-max-width:100% !important;
-min-width:0;
-overflow:visible !important;
--webkit-mask-image:none !important;
-mask-image:none !important;
-gap:12px !important;
-margin:0 auto !important;
-}
-.hero-logos:not(.is-flow) .hlogo-col{display:contents !important}
-.hero-logos:not(.is-flow) .hlogo-track{display:contents !important;animation:none !important;transform:none !important}
-.hero-logos:not(.is-flow) .hlogo-col .hlogo-tile:nth-child(n+5){display:none !important}
-/* no boxes on mobile — just the logos themselves */
-.hlogo-tile{
-background:none !important;
-border:none !important;
-box-shadow:none !important;
--webkit-backdrop-filter:none !important;
-backdrop-filter:none !important;
-border-radius:0 !important;
-padding:6px 10px !important;
-}
-.hlogo-tile::before{display:none !important}
-.hlogo-tile img{max-height:60px !important;filter:drop-shadow(0 6px 16px rgba(0,0,0,0.45))}
-.hlogo-tile img[alt="Pirates of Coffee"]{max-height:96px !important}
-.hlogo-tile img[alt="Peace Collective"]{max-height:64px !important}
-
-/* ---- flow mode: contact-init.js merges both columns into one
-        track and adds .is-flow — the logos then stream upward
-        through a masked window, exactly like the hero cards flow
-        on mobile (same direction, same masked single column). ---- */
-.hero-logos.is-flow{
-display:block !important;
-height:clamp(300px,48vh,420px) !important;
-overflow:hidden !important;
--webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 8%,#000 92%,transparent 100%) !important;
-mask-image:linear-gradient(to bottom,transparent 0%,#000 8%,#000 92%,transparent 100%) !important;
-}
-.hero-logos.is-flow .hlogo-col{display:block !important;height:100% !important;overflow:hidden !important}
-.hero-logos.is-flow .hlogo-track{
-display:flex !important;
-flex-direction:column !important;
-gap:0 !important;
-animation:scrollUp 26s linear infinite !important;
-padding:0 !important;
-will-change:transform;
-}
-/* every tile visible — the duplicated half makes the loop seamless */
-.hero-logos.is-flow .hlogo-col .hlogo-tile{display:flex !important}
-/* margins instead of gap: each half of the track then measures exactly
-   50% of its height, so the -50% keyframe loops without a visible jump */
-.hero-logos.is-flow .hlogo-tile{margin:0 auto 30px !important}
-/* a finger on the logos holds them still, like the hero cards */
-.hero-logos.is-flow.is-held .hlogo-track,
-.hero-logos.is-flow:hover .hlogo-track{animation-play-state:paused !important}
-}
-@media (max-width:380px){
-.hlogo-tile{padding:5px 8px !important}
-.hlogo-tile img{max-height:52px !important}
-.hlogo-tile img[alt="Pirates of Coffee"]{max-height:84px !important}
-}
-@media (prefers-reduced-motion:reduce){
-.hero-logos.is-flow .hlogo-track{animation:none !important}
-}
 
 /* ---- form: nothing may exceed the card ---- */
 @media (max-width:900px){
@@ -196,4 +84,114 @@ text-align:center !important;
 }
 .footer-legal span{display:block;width:100%;margin:0 0 6px;opacity:0.72;line-height:1.4;text-align:center}
 .footer-legal a{display:block !important;width:100%;padding:11px 0 !important;line-height:1.3;text-align:center}
+}
+
+/* ============================================================
+   BRAND LOGOS — one continuous vertical stream.
+   No tiles, no outlines, no containers: just the logos flowing
+   top to bottom through a soft-masked window.
+
+   Seamless-loop contract — all three must hold:
+     1. the track holds the same 8 logos twice, in the same order
+     2. every slot is a FIXED height, so both halves measure
+        identically and a decoding image can never shift the
+        rhythm or the seam
+     3. the keyframe travels exactly 50% of the track, which is
+        exactly one full set, so the clone lands pixel-precisely
+        where the original was
+   Net effect: no start, no end, no jump — the seam is unobservable.
+   ============================================================ */
+.hero-logos{
+position:relative;
+display:block;
+width:100%;
+max-width:min(420px,100%);
+margin:0 auto;
+height:clamp(440px,70vh,680px);
+overflow:hidden;
+-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 13%,#000 87%,transparent 100%);
+mask-image:linear-gradient(to bottom,transparent 0,#000 13%,#000 87%,transparent 100%);
+}
+.hlogo-track{
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:0;
+margin:0;
+padding:0;
+transform:translate3d(0,-50%,0);
+animation:logoStream 16s linear infinite;
+will-change:transform;
+backface-visibility:hidden;
+-webkit-backface-visibility:hidden;
+}
+/* travels exactly one set, downward, forever */
+@keyframes logoStream{
+from{transform:translate3d(0,-50%,0)}
+to{transform:translate3d(0,0,0)}
+}
+.hlogo-tile{
+flex:0 0 auto;
+display:flex;
+align-items:center;
+justify-content:center;
+width:100%;
+height:112px;
+margin:0;
+padding:0;
+background:none;
+border:none;
+border-radius:0;
+box-shadow:none;
+-webkit-backdrop-filter:none;
+backdrop-filter:none;
+}
+.hlogo-tile::before,.hlogo-tile::after{content:none;display:none}
+.hlogo-tile a.logo-link{
+display:flex;
+align-items:center;
+justify-content:center;
+width:100%;
+height:100%;
+text-decoration:none;
+}
+.hlogo-tile img{
+max-width:80%;
+max-height:54px;
+width:auto;
+height:auto;
+object-fit:contain;
+opacity:0.95;
+filter:drop-shadow(0 4px 14px rgba(0,0,0,0.38));
+}
+/* Matched on href, not alt: the clone set carries alt="" so a
+   height keyed to alt would size the two halves differently. */
+.hlogo-tile a[href*="piratesofcoffee"] img{max-height:92px}
+.hlogo-tile a[href*="peace-collective"] img{max-height:60px}
+
+@media (max-width:1024px){
+.hero-logos{height:clamp(400px,56vh,520px);max-width:min(380px,100%)}
+}
+@media (max-width:900px){
+.hero-logos{height:clamp(360px,52vh,460px);max-width:min(340px,100%)}
+.hlogo-tile{height:96px}
+.hlogo-tile img{max-width:78%;max-height:48px}
+.hlogo-tile a[href*="piratesofcoffee"] img{max-height:80px}
+.hlogo-tile a[href*="peace-collective"] img{max-height:54px}
+}
+/* 360, not 380: 375/390/393px phones are mainstream and should keep
+   the standard mobile sizing rather than the compact one. */
+@media (max-width:360px){
+.hero-logos{height:clamp(320px,50vh,400px)}
+.hlogo-tile{height:84px}
+.hlogo-tile img{max-height:42px}
+.hlogo-tile a[href*="piratesofcoffee"] img{max-height:70px}
+.hlogo-tile a[href*="peace-collective"] img{max-height:48px}
+}
+/* Accessibility fallback: hold still and show each brand once,
+   rather than clipping half the list inside a fixed window. */
+@media (prefers-reduced-motion:reduce){
+.hero-logos{height:auto;overflow:visible;-webkit-mask-image:none;mask-image:none}
+.hlogo-track{animation:none;transform:none;will-change:auto}
+.hlogo-tile[aria-hidden="true"]{display:none}
 }
